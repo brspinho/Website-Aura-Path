@@ -172,6 +172,12 @@ ul { list-style: none; }
   max-width: 1400px;
   margin: 0 auto;
 }
+.hero-img {
+  width: 100%;
+  height: 100%;
+  display: block;    /* Remove espaços vazios embaixo da imagem */
+  border-radius: inherit; /* Mantém o arredondamento se o mockup tiver */
+}
 .hero-bg {
   position: absolute; inset: 0; z-index: 0; overflow: hidden;
 }
