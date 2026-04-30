@@ -34,6 +34,9 @@ toggle.addEventListener('click', () => {
 document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', () => navLinks.classList.remove('open'));
 });
+document.querySelector('.nav-logo').addEventListener('click', () => {
+  navLinks.classList.remove('open');
+});
 
 // ═══════════ SCREENSHOT TABS ═══════════
 document.querySelectorAll('.tab-btn').forEach(btn => {
