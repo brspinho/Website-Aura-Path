@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aura Path — Decisão Clínica com IA Explicável</title>
+  <meta name="description" content="Aura Path é um sistema de suporte à decisão clínica com IA Explicável (XAI), reduzindo iatrogenias e acelerando diagnósticos com segurança e transparência." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    // Apply saved theme before paint to avoid flash
+    (function() {
+      var saved = localStorage.getItem('aura-theme');
+      var preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', saved || preferred);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ═══════════════════════════ NAVBAR ═══════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <img src="assets/logo.png" alt="Aura Path Logo" class="logo-img" />
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#produto">Produto</a></li>
+        <li><a href="#funcionalidades">Funcionalidades</a></li>
+        <li><a href="#screenshots">Screenshots</a></li>
+        <li><a href="#publico">Para quem</a></li>
+        <li><a href="#contato" class="nav-cta">Solicitar Demo</a></li>
+      </ul>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema" title="Alternar tema claro/escuro">
+        🌙
+      </button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
+      <canvas id="particles-canvas"></canvas>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        IA Explicável para Medicina Clínica
+      </div>
+      <h1 class="hero-title">
+        Diagnósticos mais seguros.<br />
+        <span class="gradient-text">Em 5 segundos.</span>
+      </h1>
+      <p class="hero-subtitle">
+        O Aura Path entrega suporte à decisão clínica com raciocínio transparente, baseado em ICD-11 e padrões da OMS — eliminando caixas-pretas e reduzindo iatrogenias causadas por efeitos colaterais de medicamentos.
+      </p>
+      <div class="hero-actions">
+        <a href="#contato" class="btn-primary" id="hero-cta-demo">Solicitar Demo Gratuita</a>
+        <a href="#produto" class="btn-ghost" id="hero-cta-saiba">Saiba mais ↓</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number">5s</span>
+          <span class="stat-label">de pesquisa clínica</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-number">ICD-11</span>
+          <span class="stat-label">conformidade global</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-number">XAI</span>
+          <span class="stat-label">raciocínio explicável</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="mockup-frame">
+        <div class="mockup-bar">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="mockup-screen">
+          <div class="mockup-placeholder" id="hero-screenshot">
+            <div class="placeholder-icon">🖥️</div>
+            <p>Adicione um print do produto aqui</p>
+            <span>Substitua a imagem em <code>assets/screenshot-hero.png</code></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ PROBLEMA / SOLUÇÃO ═══════════════════════════ -->
+  <section class="problem-section" id="produto">
+    <div class="container">
+      <div class="section-label">O Problema</div>
+      <h2 class="section-title">A prescrição médica ainda é um campo minado</h2>
+      <div class="problem-grid">
+        <div class="problem-card">
+          <div class="problem-icon">⏱️</div>
+          <h3>40 minutos</h3>
+          <p>é o tempo médio que um médico leva pesquisando interações medicamentosas manualmente antes de prescrever.</p>
+        </div>
+        <div class="problem-card">
+          <div class="problem-icon">⚠️</div>
+          <h3>Iatrogenias silenciosas</h3>
+          <p>Diagnósticos errados causados por efeitos colaterais de medicamentos ainda são uma das principais causas de reinternação.</p>
+        </div>
+        <div class="problem-card">
+          <div class="problem-icon">📦</div>
+          <h3>IA como caixa-preta</h3>
+          <p>Ferramentas de IA existentes não explicam o raciocínio — gerando desconfiança clínica e impedindo adoção.</p>
+        </div>
+      </div>
+
+      <div class="solution-block">
+        <div class="solution-text">
+          <div class="section-label">A Solução</div>
+          <h2 class="section-title">Aura Path transforma complexidade clínica em clareza</h2>
+          <p class="solution-desc">
+            Nosso motor de raciocínio ontológico cruza o histórico de sintomas, medicamentos em uso e padrões epidemiológicos para entregar uma árvore de decisão interativa, auditável e baseada em fontes oficiais como NIH e FDA.
+          </p>
+          <ul class="solution-list">
+            <li><span class="check">✓</span> Raciocínio passo a passo visível ao médico</li>
+            <li><span class="check">✓</span> Alertas ativos de iatrogenias potenciais</li>
+            <li><span class="check">✓</span> Referências bibliográficas automáticas</li>
+            <li><span class="check">✓</span> Integração via API/FHIR com PEP/PHR existentes</li>
+          </ul>
+        </div>
+        <div class="solution-visual">
+          <div class="xai-demo">
+            <div class="xai-node xai-root">
+              <span class="node-icon">🧠</span>
+              <span>Suspeita: Iatrogenia por Metformina</span>
+            </div>
+            <div class="xai-branches">
+              <div class="xai-branch">
+                <div class="xai-connector"></div>
+                <div class="xai-node xai-child">
+                  <span>Histórico: Metformina 850mg/dia</span>
+                </div>
+              </div>
+              <div class="xai-branch">
+                <div class="xai-connector"></div>
+                <div class="xai-node xai-child xai-alert">
+                  <span>⚠️ Interação: Álcool + Metformina → Acidose Lática</span>
+                </div>
+              </div>
+              <div class="xai-branch">
+                <div class="xai-connector"></div>
+                <div class="xai-node xai-child xai-source">
+                  <span>📚 Fonte: FDA MedWatch 2023</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FUNCIONALIDADES ═══════════════════════════ -->
+  <section class="features-section" id="funcionalidades">
+    <div class="container">
+      <div class="section-label">Funcionalidades</div>
+      <h2 class="section-title">Tudo que o clínico precisa, no momento certo</h2>
+      <div class="features-grid">
+
+        <div class="feature-card feature-card--large">
+          <div class="feature-icon-wrap" style="background: linear-gradient(135deg,#8b0000,#c0392b)">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>IA Explicável (XAI)</h3>
+          <p>Cada conclusão diagnóstica vem acompanhada de uma árvore de raciocínio interativa — você vê exatamente por que o sistema chegou àquela hipótese.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrap" style="background: linear-gradient(135deg,#1a5276,#2980b9)">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#fff" stroke-width="2"/><path d="M12 8v4l3 3" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Velocidade</h3>
+          <p>Resultados em menos de 5 segundos, versus 40 minutos de pesquisa manual.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrap" style="background: linear-gradient(135deg,#1e8449,#27ae60)">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Conformidade Global</h3>
+          <p>Baseado em ICD-11 e padrões da OMS, com precisão linguística e clínica em qualquer país.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrap" style="background: linear-gradient(135deg,#6c3483,#9b59b6)">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Trilha de Auditoria</h3>
+          <p>Garantia de segurança legal ao citar fontes oficiais: NIH, FDA e referências validadas.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrap" style="background: linear-gradient(135deg,#7d6608,#f1c40f)">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Integração FHIR/PEP</h3>
+          <p>API direta nos sistemas de Prontuário Eletrônico já utilizados pelos médicos.</p>
+        </div>
+
+        <div class="feature-card feature-card--large">
+          <div class="feature-icon-wrap" style="background: linear-gradient(135deg,#922b21,#e74c3c)">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Feedback Clínico Ativo</h3>
+          <p>Médicos podem corrigir o nexo causal diretamente na interface, refinando continuamente o modelo com curadoria humana.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ SCREENSHOTS ═══════════════════════════ -->
+  <section class="screenshots-section" id="screenshots">
+    <div class="container">
+      <div class="section-label">O Produto em ação</div>
+      <h2 class="section-title">Veja o Aura Path funcionando</h2>
+      <p class="section-subtitle">Adicione prints do seu protótipo abaixo — basta substituir as imagens na pasta <code>assets/</code></p>
+
+      <div class="screenshots-tabs" id="screenshots-tabs">
+        <button class="tab-btn active" data-tab="0">Tela de Diagnóstico</button>
+        <button class="tab-btn" data-tab="1">Árvore XAI</button>
+        <button class="tab-btn" data-tab="2">Alertas de Iatrogenia</button>
+        <button class="tab-btn" data-tab="3">Integração PEP</button>
+      </div>
+
+      <div class="screenshots-display">
+        <div class="screenshot-slide active" data-slide="0">
+          <div class="screenshot-frame">
+            <div class="screenshot-placeholder">
+              <div class="upload-icon">📸</div>
+              <h4>Tela de Diagnóstico</h4>
+              <p>Substitua por <code>assets/screenshot-1.png</code></p>
+            </div>
+          </div>
+          <div class="screenshot-caption">
+            <h4>Interface de Diagnóstico Clínico</h4>
+            <p>O médico insere os sintomas e o histórico do paciente. O Aura Path processa e retorna hipóteses diagnósticas ranqueadas com raciocínio transparente.</p>
+          </div>
+        </div>
+
+        <div class="screenshot-slide" data-slide="1">
+          <div class="screenshot-frame">
+            <div class="screenshot-placeholder">
+              <div class="upload-icon">🌳</div>
+              <h4>Árvore de Decisão XAI</h4>
+              <p>Substitua por <code>assets/screenshot-2.png</code></p>
+            </div>
+          </div>
+          <div class="screenshot-caption">
+            <h4>Visualização da Árvore XAI</h4>
+            <p>Cada nó da árvore representa um passo do raciocínio. O médico pode navegar, expandir e questionar cada etapa do processo diagnóstico.</p>
+          </div>
+        </div>
+
+        <div class="screenshot-slide" data-slide="2">
+          <div class="screenshot-frame">
+            <div class="screenshot-placeholder">
+              <div class="upload-icon">⚠️</div>
+              <h4>Painel de Alertas</h4>
+              <p>Substitua por <code>assets/screenshot-3.png</code></p>
+            </div>
+          </div>
+          <div class="screenshot-caption">
+            <h4>Alertas de Iatrogenias Potenciais</h4>
+            <p>O sistema sinaliza automaticamente interações medicamentosas de risco, com severidade graduada e fonte bibliográfica oficial.</p>
+          </div>
+        </div>
+
+        <div class="screenshot-slide" data-slide="3">
+          <div class="screenshot-frame">
+            <div class="screenshot-placeholder">
+              <div class="upload-icon">🔗</div>
+              <h4>Integração com PEP</h4>
+              <p>Substitua por <code>assets/screenshot-4.png</code></p>
+            </div>
+          </div>
+          <div class="screenshot-caption">
+            <h4>Integração com Prontuário Eletrônico</h4>
+            <p>Via API/FHIR, o Aura Path se conecta diretamente ao PEP em uso, sem trocar de sistema. Os dados do paciente fluem automaticamente.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ PÚBLICO-ALVO ═══════════════════════════ -->
+  <section class="audience-section" id="publico">
+    <div class="container">
+      <div class="section-label">Para quem é</div>
+      <h2 class="section-title">Construído para quem decide na linha de frente</h2>
+      <div class="audience-grid">
+        <div class="audience-card" id="audience-clinicos">
+          <div class="audience-avatar">👨‍⚕️</div>
+          <h3>Clínicos Gerais</h3>
+          <p>Médicos em postos de saúde e hospitais privados que precisam de suporte diagnóstico rápido sem abrir dezenas de abas.</p>
+          <ul>
+            <li>Raciocínio clínico em segundos</li>
+            <li>Referências automáticas</li>
+            <li>Alerta de interações</li>
+          </ul>
+        </div>
+        <div class="audience-card" id="audience-gestores">
+          <div class="audience-avatar">🏥</div>
+          <h3>Gestores Hospitalares</h3>
+          <p>Que buscam reduzir custos com exames desnecessários e mitigar riscos jurídicos associados a diagnósticos incorretos.</p>
+          <ul>
+            <li>Redução de exames redundantes</li>
+            <li>Trilha de auditoria completa</li>
+            <li>Dashboard de conformidade</li>
+          </ul>
+        </div>
+        <div class="audience-card" id="audience-instituicoes">
+          <div class="audience-avatar">🌐</div>
+          <h3>Instituições de Saúde</h3>
+          <p>Hospitais de grande porte e redes que precisam de integração de dados em escala global com conformidade ICD-11.</p>
+          <ul>
+            <li>API/FHIR para integração</li>
+            <li>Suporte multilíngue</li>
+            <li>Modelo SaaS ou institucional</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ CTA FINAL ═══════════════════════════ -->
+  <section class="cta-section" id="contato">
+    <div class="cta-bg">
+      <div class="cta-orb cta-orb-1"></div>
+      <div class="cta-orb cta-orb-2"></div>
+    </div>
+    <div class="container">
+      <div class="cta-content">
+        <div class="section-label">Pronto para começar?</div>
+        <h2 class="cta-title">Leve a IA explicável para a sua prática clínica</h2>
+        <p class="cta-subtitle">Solicite uma demonstração gratuita e veja o Aura Path funcionando com casos reais do seu contexto.</p>
+        <form class="cta-form" id="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="nome" placeholder="Dr. João Silva" required />
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail institucional</label>
+              <input type="email" id="email" name="email" placeholder="joao@hospital.com.br" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="instituicao">Instituição</label>
+              <input type="text" id="instituicao" name="instituicao" placeholder="Hospital São Lucas" />
+            </div>
+            <div class="form-group">
+              <label for="perfil">Perfil</label>
+              <select id="perfil" name="perfil">
+                <option value="">Selecione...</option>
+                <option value="clinico">Médico Clínico</option>
+                <option value="gestor">Gestor Hospitalar</option>
+                <option value="instituicao">Instituição de Saúde</option>
+                <option value="pesquisador">Pesquisador</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary btn-submit" id="form-submit">
+            Solicitar Demo Gratuita →
+          </button>
+          <p class="form-privacy">🔒 Seus dados são usados exclusivamente para agendamento. Política LGPD.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/logo.png" alt="Aura Path" class="footer-logo" />
+          <p>IA Explicável para Suporte à Decisão Clínica</p>
+          <div class="footer-badges">
+            <span class="badge">ICD-11</span>
+            <span class="badge">LGPD</span>
+            <span class="badge">FHIR</span>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Produto</h4>
+          <ul>
+            <li><a href="#funcionalidades">Funcionalidades</a></li>
+            <li><a href="#screenshots">Screenshots</a></li>
+            <li><a href="#publico">Para quem</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Empresa</h4>
+          <ul>
+            <li><a href="#">Sobre nós</a></li>
+            <li><a href="#">Pesquisa</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Contato</h4>
+          <ul>
+            <li><a href="mailto:contato@aurapath.com.br">contato@aurapath.com.br</a></li>
+            <li><a href="#contato">Solicitar Demo</a></li>
+            <li><a href="#">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Aura Path. Todos os direitos reservados.</p>
+        <p>Desenvolvido com ❤️ para a saúde brasileira.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
